@@ -1,0 +1,42 @@
+import System;
+import ThirdParty;
+import Vendor.JSPPUnit;
+import Vendor.JSPPUnit.Assert;
+
+module StringSetTests
+{
+    public void queue() {
+        suite("StringSet", void() {
+            test("(Constructor)", void() {
+                auto set = new StringSet("foo", "bar");
+
+                ok(set.contains("foo"));
+                ok(set.contains("bar"));
+                ok(!set.contains("baz"));
+            });
+            test("insert", void() {
+                auto set = new StringSet("foo", "bar");
+
+                ok(!set.contains("baz"));
+                set.insert("baz");
+                ok(set.contains("baz"));
+            });
+            test("insert (multiple)", void() {
+                auto set = new StringSet();
+
+                ok(!set.contains("foo"));
+                ok(!set.contains("bar"));
+                set.insert("foo", "bar");
+                ok(set.contains("foo"));
+                ok(set.contains("bar"));
+            });
+            test("remove", void() {
+                auto set = new StringSet("foo", "bar");
+
+                ok(set.contains("bar"));
+                set.remove("bar");
+                ok(!set.contains("bar"));
+            });
+        });
+    }
+}

@@ -1,0 +1,28 @@
+module ThirdParty
+{
+    class StringSet
+    {
+        var obj = {};
+
+        StringSet(...string values) {
+            this.insert(values);
+        }
+
+        bool contains(string value) {
+            return {}.hasOwnProperty.call(this.obj, value);
+        }
+
+        void insert(...string values) {
+            this.insert(values);
+        }
+        void insert(string[] values) {
+            foreach(string value in values) {
+                this.obj[value] = true;
+            }
+        }
+
+        void remove(string value) {
+            delete this.obj[value];
+        }
+    }
+}
